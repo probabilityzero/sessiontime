@@ -18,6 +18,7 @@ function App() {
   const { user, loading, setUser } = useAuthStore();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
+  const [currentPageTitle, setCurrentPageTitle] = useState('');
 
   useEffect(() => {
     async function getSession() {
@@ -56,8 +57,16 @@ function App() {
   }, [setUser]);
 
   const ProtectedRoute = ({ element, pageTitle }: { element: React.ReactElement, pageTitle: string }) => {
+    useEffect(() => {
+      setCurrentPageTitle(pageTitle);
+    }, [pageTitle]);
+
     if (authLoading) {
-      return <div><Header pageTitle="Loading..." isCompact={false} toggleCompactMenu={() => {}} /></div>;
+      return (
+        <div>
+          <Header pageTitle="Loading..." isCompact={false} toggleCompactMenu={() => {}} />
+        </div>
+      );
     }
 
     return isAuthenticated ? element : <Navigate to="/auth" />;
@@ -65,7 +74,7 @@ function App() {
 
   return (
     <Router>
-      <Suspense fallback={loading ? <div>Loading...</div> : <div><Header pageTitle="Loading..." isCompact={false} toggleCompactMenu={() => {}} /></div>}>
+      <Suspense fallback={null}>
         <Routes>
           <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth />} />
           <Route

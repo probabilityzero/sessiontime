@@ -18,6 +18,17 @@ export function ViewGoals({
   handleStartTask,
   taskItemRefs,
 }: NewGoalBulletProps) {
+
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (a.status === 'started' && b.status !== 'started') {
+      return -1;
+    }
+    if (a.status !== 'started' && b.status === 'started') {
+      return 1;
+    }
+    return 0;
+  }).filter(task => task.status !== 'completed');
+
   return (
     <>
       {isLoadingTasks ? (
@@ -35,7 +46,7 @@ export function ViewGoals({
         </div>
       ) : (
         <ul className="w-full">
-          {tasks.map((task, index) => (
+          {sortedTasks.map((task, index) => (
             <li
               key={task.id}
               ref={(el) => (taskItemRefs.current[index] = el)}  // Assigning ref here
@@ -61,6 +72,7 @@ export function ViewGoals({
                 title={task.title}
                 completed={task.status === 'completed'}
                 onComplete={handleCompleteTask}
+                status={task.status}
               />
             </li>
           ))}

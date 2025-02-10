@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', 'sans', sans-serif;
+  overflow: hidden; /* Disable scrolling on the body */
 }
 
 /* Hide scrollbar for all elements */
@@ -21,8 +22,6 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
-
-
 
 .shimmer {
   @apply bg-gradient-to-r from-transparent via-white to-transparent;

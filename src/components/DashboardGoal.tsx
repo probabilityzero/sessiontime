@@ -47,7 +47,7 @@ export function DashboardGoal() {
       await fetchTasks();
     } catch (error) {
       console.error('DashboardPage: Error fetching tasks:', error);
-      setTaskError('Failed to load tasks. Please try again later.');
+      setTaskError('Failed to load tasks:', error);
     } finally {
       setIsLoadingTasks(false);
     }
@@ -67,7 +67,7 @@ export function DashboardGoal() {
         await loadTasks(); // Reload tasks after adding a new one
       } catch (error) {
         console.error('DashboardPage: Failed to add task:', error);
-        setTaskError('Failed to add task. Please try again later.');
+        setTaskError('Failed to add task:', error);
       }
     } else {
       setTaskError('This cannot be empty.');
@@ -78,8 +78,8 @@ export function DashboardGoal() {
     try {
       await updateTaskStatus(taskId, 'started');
     } catch (error) {
-      console.error('DashboardPage: Failed to start task:', error);
-      setTaskError('Failed to start task. Please try again later.');
+      console.error('DashboardPage: Failed to add task:', error);
+      setTaskError('Failed to start task:', error);
     }
   };
 
@@ -92,26 +92,10 @@ export function DashboardGoal() {
   };
 
   return (
-    <div className="p-4 w-full max-w-full">
+    <div className="p-4 w-full">
       <main
         className="mx-auto bg-gray-100 rounded-xl flex flex-col"
-        style={{
-          ...theme => theme('dashboard.goalBox'),
-          padding: '0.5rem',
-          minWidth: '100%', // Default minimum width for the smallest screens
-          '@media (min-width: 640px)': { // For medium screens
-            minWidth: '90%',
-          },
-          '@media (min-width: 768px)': { // For large screens
-            minWidth: '75%',
-          },
-          '@media (min-width: 1024px)': { // For laptops
-            minWidth: '60%',
-          },
-          '@media (min-width: 1280px)': { // For large desktops
-            minWidth: '50%',
-          },
-        }}
+        style={{ maxWidth: '600px', width: '100%' }}
       >
         <div className={`flex justify-between border-b-2 p-2 sticky top-0 bg-gray-100 z-10 ${isScrolled ? 'shadow-sm' : ''}`}>
           <h2 className="text-xl text-left font-semibold text-gray-800">Goals</h2>

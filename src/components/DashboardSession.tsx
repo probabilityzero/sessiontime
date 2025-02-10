@@ -48,6 +48,7 @@ export function DashboardSession({}: SessionCardProps) {
       initial={{ opacity: 0, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      style={{ maxWidth: '600px', width: '100%' }} // Add max-width and width
     >
       <motion.div
         className="h-64 w-64 rounded-full bg-blue-200 m-4 shadow-md flex items-center justify-center cursor-pointer"

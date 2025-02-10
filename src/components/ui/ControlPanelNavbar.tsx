@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Image, ListChecks } from 'lucide-react';
+import { Image, ListChecks, Settings } from 'lucide-react';
 
 interface ControlPanelNavbarProps {
   activeSection: string;
@@ -27,6 +27,15 @@ const ControlPanelNavbar: React.FC<ControlPanelNavbarProps> = ({ activeSection, 
         transition={{ duration: 0.3 }} // Smooth transition for scale
       >
         <ListChecks className="w-5 h-5" />
+      </motion.button>
+      <motion.button
+        className={`p-1 ${activeSection === 'recommendedSettings' ? 'bg-gray-200' : ''}`}
+        onClick={() => setActiveSection('recommendedSettings')}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Settings className="w-5 h-5" />
       </motion.button>
     </nav>
   );

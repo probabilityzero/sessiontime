@@ -51,7 +51,7 @@ export function NewSessionTitle({ title, onSave }: NewSessionTitleProps) {
   };
 
   return (
-    <div className="flex min-w-full items-center">
+    <div className="flex items-center">
       <div className="relative">
         {isEditing ? (
           <div className="justify-between">
@@ -82,8 +82,7 @@ export function NewSessionTitle({ title, onSave }: NewSessionTitleProps) {
             {title}
           </h2>
         )}
-      
-          <div className="fixed-width flex justify-center">
+        <div className="fixed-width flex justify-center">
           <motion.div
             className="h-[2px] bg-blue-500"
             initial={{ width: '0%', scaleX: 0 }} // Start with scaleX at 0

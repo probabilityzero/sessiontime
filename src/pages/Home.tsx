@@ -9,17 +9,17 @@ function HomePage() {
 
   return (
     <motion.div
-      className="h-screen-minus-12 flex flex-col overflow-hidden items-center"
+      className="h-screen flex flex-col items-center p-4 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-        <div>
+      <div className="w-full">
         <DashboardSession />
-        </div>
-        <div>
+      </div>
+      <div className="w-full">
         <DashboardGoal />
-        </div>
+      </div>
     </motion.div>
   );
 }

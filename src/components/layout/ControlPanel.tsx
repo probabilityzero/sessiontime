@@ -7,6 +7,7 @@ import CalendarComponent from '../ui/ControlPanelCalendar';
 import ControlPanelNavbar from '../ui/ControlPanelNavbar';
 import { useUserSettingsStore } from '../../store/useUserSettingsStore';
 import { useAuthStore } from '../../store/useAuthStore';
+import ControlPanelRecommended from '../ui/ControlPanelRecommended';
 
 interface ControlPanelProps {
   onBackClick?: () => void; // Add onBackClick prop
@@ -92,6 +93,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ onBackClick }) => {
               <ControlPanelNavbar activeSection={activeSection} setActiveSection={setActiveSection} />
               {activeSection === 'circleColor' && <CircleColorSettings />}
               {activeSection === 'emojiTag' && <ControlPanelTags />}
+              {activeSection === 'recommendedSettings' && <ControlPanelRecommended />}
             </div>
 
             <div className="p-4 border-t">
